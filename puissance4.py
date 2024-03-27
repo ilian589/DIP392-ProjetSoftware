@@ -2,7 +2,7 @@ import pygame
 import sys
 import numpy as np
 
-# Constants
+
 ROWS = 6
 COLUMNS = 7
 SQUARESIZE = 100
@@ -12,7 +12,7 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 
-# Functions
+
 def create_board():
     return np.zeros((ROWS, COLUMNS), dtype=int)
 
@@ -28,25 +28,22 @@ def get_next_open_row(board, col):
             return r
 
 def winning_move(board, piece):
-    # Check horizontal locations
     for c in range(COLUMNS-3):
         for r in range(ROWS):
             if board[r][c] == piece and board[r][c+1] == piece and board[r][c+2] == piece and board[r][c+3] == piece:
                 return True
 
-    # Check vertical locations
     for c in range(COLUMNS):
         for r in range(ROWS-3):
             if board[r][c] == piece and board[r+1][c] == piece and board[r+2][c] == piece and board[r+3][c] == piece:
                 return True
 
-    # Check positively sloped diagonals
     for c in range(COLUMNS-3):
         for r in range(ROWS-3):
             if board[r][c] == piece and board[r+1][c+1] == piece and board[r+2][c+2] == piece and board[r+3][c+3] == piece:
                 return True
 
-    # Check negatively sloped diagonals
+
     for c in range(COLUMNS-3):
         for r in range(3, ROWS):
             if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
@@ -66,7 +63,6 @@ def draw_board(board):
                 pygame.draw.circle(screen, YELLOW, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
     pygame.display.update()
 
-# Game Initialization
 pygame.init()
 
 width = COLUMNS * SQUARESIZE
@@ -99,7 +95,7 @@ while not game_over:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
-            # Ask for Player 1 input
+          
             if turn == 0:
                 posx = event.pos[0]
                 col = int(posx // SQUARESIZE)
@@ -112,7 +108,7 @@ while not game_over:
                         print("Player 1 wins!")
                         game_over = True
 
-            # Ask for Player 2 input
+    
             else:
                 posx = event.pos[0]
                 col = int(posx // SQUARESIZE)
