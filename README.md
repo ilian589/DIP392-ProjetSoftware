@@ -1,2 +1,3 @@
 # DIP392-ProjetSoftware
-Nico Illian
+AOUROU Ilian
+BELAS Nicolas
